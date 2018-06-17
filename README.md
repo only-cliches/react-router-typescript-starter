@@ -9,18 +9,18 @@ Get React Router, Typescript, Server Side Rendering and Live Reloading in the ti
 - Webpack 4.12.0
 
 ## Usage
-1. Git clone this repo.
+### 1. Git clone this repo.
 ```
 git clone https://github.com/ClickSimply/react-router-typescript-starter.git
 ```
 
-2. npm install
+### 2. npm install
 ```
 cd react-router-typescript-starter
 npm i
 ```
 
-3. Profit
+### 3. Profit
 To run in development mode with live reload:
 ```
 npm run serve
