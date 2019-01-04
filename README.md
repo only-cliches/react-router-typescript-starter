@@ -39,6 +39,3 @@ node www/server.js
 
 ## License
 MIT
-
-## Contributing
-What?
