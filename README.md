@@ -1,4 +1,4 @@
-# React Router TypeScript Starter
+# React Router Universal TypeScript Starter
 
 Get React Router, Typescript, Server Side Rendering and Live Reloading in the time it takes you to type `git clone`.
 
@@ -72,7 +72,7 @@ export const RouteMap = () => (
 
 ## Good Stuff To Know
 - Static files are served from the `www/public` folder.  Put static resources there.
-- Live reload tracks changes to the server scripts, client scripts or styles.  Whiz-bang.
+- Live reload tracks changes to the server scripts, client scripts and styles.  Whiz-bang.
 
 ## License
 MIT
