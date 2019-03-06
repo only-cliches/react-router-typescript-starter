@@ -4,6 +4,7 @@ import * as React from 'react';
 
 export interface MainProps {
     content: string;
+    scriptSrc: string;
 }
 
 const env = process.env.NODE_ENV || 'development';
@@ -25,13 +26,13 @@ export default class MainPage extends React.Component<MainProps, any> {
                     {helmet.link.toComponent()}
                     */}
                     <title>Home</title>
-                    {env === "development" ? <script src="http://localhost:35729/livereload.js?snipver=1"></script> : null}
-                    <link href="/style.css" rel="stylesheet" />
+                    {env === "development" ? <script id="livereload" src="http://localhost:35729/livereload.js?snipver=1"></script> : null}
+                    <link href="/build/style.css" rel="stylesheet" />
                     <link href="/favicon.ico" />
                 </head>
                 <body>
-                    <div id="body" dangerouslySetInnerHTML={{__html: this.props.content}}/>
-                    <script src="/app.js"></script>
+                    <div id="app" dangerouslySetInnerHTML={{__html: this.props.content}}/>
+                    <script src={this.props.scriptSrc ? this.props.scriptSrc : "/build/app.js"}></script>
                 </body>
             </html>
         );

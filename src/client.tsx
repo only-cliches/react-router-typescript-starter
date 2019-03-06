@@ -4,8 +4,12 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { RouteMap } from './app/routes';
 
-ReactDOM.hydrate(
+const devFlag = document.getElementById("livereload");
+
+const Mount = devFlag ? ReactDOM.render : ReactDOM.hydrate;
+Mount(
     <BrowserRouter>
         <RouteMap />
     </BrowserRouter>,
-    document.getElementById('body'));
+    document.getElementById('app')
+);

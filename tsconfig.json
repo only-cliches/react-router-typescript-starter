@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
         "jsx": "react",
-        "module": "commonjs",
+        "module": "esnext",
+        "moduleResolution": "node",
         "target": "ES5",
-        "allowJs": true
-    }
+        "allowJs": true,
+    },
+    "exclude": ["node_modules"]
 }
