@@ -91,23 +91,120 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
 
-/***/ "./src/pages/MainPage.tsx":
-/*!********************************!*\
-  !*** ./src/pages/MainPage.tsx ***!
-  \********************************/
-/*! no static exports found */
+module.exports = require("react");
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(3);
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(/*! react */ "react");
-const env = "development" || false;
+const express = __webpack_require__(4);
+const errorHandler = __webpack_require__(5);
+const http = __webpack_require__(6);
+const path = __webpack_require__(7);
+const fs = __webpack_require__(8);
+const React = __webpack_require__(0);
+const ReactDOMServer = __webpack_require__(9);
+const react_router_1 = __webpack_require__(1);
+const assets = fs.readFileSync(path.join(__dirname, "webpack-assets.json"), { encoding: "utf-8" });
+const app = express();
+app.set('port', process.env.PORT || 3000);
+const env = "production" || false;
+if ('development' === env) {
+    console.log('Running in development mode');
+    app.use(errorHandler());
+}
+app.use(express.static(path.join(__dirname, 'public')));
+const MainPage_1 = __webpack_require__(10);
+const appJS = JSON.parse(assets).app.js;
+/////////////////////////////
+// SSR when in production mode
+const routes_1 = __webpack_require__(11);
+app.use((req, res, next) => {
+    const content = ReactDOMServer.renderToString(React.createElement(react_router_1.StaticRouter, { location: req.url, context: {} },
+        React.createElement(routes_1.RouteMap, null)));
+    res.write("<!DOCTYPE html>");
+    const stream = ReactDOMServer.renderToStaticNodeStream(React.createElement(MainPage_1.default, { content: content, scriptSrc: appJS }));
+    stream.pipe(res);
+});
+/////////
+//////////////////////////////////////
+/////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///
+//////////
+http.createServer(app).listen(app.get('port'), () => {
+    console.log('Express server listening on port ' + app.get('port'));
+});
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("errorhandler");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("http");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-dom/server");
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+const env = "production" || false;
 class MainPage extends React.Component {
     render() {
         // Add helmet to control title at the view level
@@ -129,159 +226,132 @@ exports.default = MainPage;
 
 
 /***/ }),
-
-/***/ "./src/server.tsx":
-/*!************************!*\
-  !*** ./src/server.tsx ***!
-  \************************/
-/*! no static exports found */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = __webpack_require__(/*! express */ "express");
-const errorHandler = __webpack_require__(/*! errorhandler */ "errorhandler");
-const http = __webpack_require__(/*! http */ "http");
-const path = __webpack_require__(/*! path */ "path");
-const fs = __webpack_require__(/*! fs */ "fs");
-const React = __webpack_require__(/*! react */ "react");
-const ReactDOMServer = __webpack_require__(/*! react-dom/server */ "react-dom/server");
-const react_router_1 = __webpack_require__(/*! react-router */ "react-router");
-const assets = fs.readFileSync(path.join(__dirname, "webpack-assets.json"), { encoding: "utf-8" });
-const app = express();
-app.set('port', process.env.PORT || 3000);
-const env = "development" || false;
-if ('development' === env) {
-    console.log('Running in development mode');
-    app.use(errorHandler());
-}
-app.use(express.static(path.join(__dirname, 'public')));
-const MainPage_1 = __webpack_require__(/*! ./pages/MainPage */ "./src/pages/MainPage.tsx");
-const appJS = JSON.parse(assets).app.js;
-/////////////////////////////
-//////////////////////////////
-/////////////////////////////////////////
-/////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////
-/////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////
-///
+const React = __webpack_require__(0);
+const react_router_1 = __webpack_require__(1);
+const HomeView_1 = __webpack_require__(12);
+// import AboutView from './views/AboutView';
+const NotFoundView_1 = __webpack_require__(15);
+const AsyncRoute_1 = __webpack_require__(16);
+const AboutAsync = 
+////////////////////////
+__webpack_require__(17).default;
 /////////
-// SPA with no SSR in development mode
-app.use((req, res, next) => {
-    res.send(`<!DOCTYPE html>${ReactDOMServer.renderToString(React.createElement(MainPage_1.default, { content: "", scriptSrc: "" }))}`);
-});
+/////////////////////////////////////////////////////////////////////////////
 //////////
-http.createServer(app).listen(app.get('port'), () => {
-    console.log('Express server listening on port ' + app.get('port'));
-});
+exports.RouteMap = () => (React.createElement(AsyncRoute_1.Suspense, { fallback: "Loading" },
+    React.createElement(react_router_1.Switch, null,
+        React.createElement(react_router_1.Route, { path: "/", exact: true, component: HomeView_1.default }),
+        React.createElement(react_router_1.Route, { path: "/about" },
+            React.createElement(AboutAsync, null)),
+        React.createElement(react_router_1.Route, { component: NotFoundView_1.default }))));
 
 
 /***/ }),
-
-/***/ 0:
-/*!******************************!*\
-  !*** multi ./src/server.tsx ***!
-  \******************************/
-/*! no static exports found */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/scottlott/Projects/react-router-typescript-starter/src/server.tsx */"./src/server.tsx");
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+const react_router_dom_1 = __webpack_require__(13);
+const Hello_1 = __webpack_require__(14);
+class HomeView extends React.Component {
+    render() {
+        return React.createElement("div", null,
+            React.createElement("h2", null, "Home"),
+            React.createElement(Hello_1.Hello, { name: "world" }),
+            React.createElement("div", null,
+                React.createElement(react_router_dom_1.Link, { to: "/about" }, "About")));
+    }
+}
+exports.default = HomeView;
 
 
 /***/ }),
-
-/***/ "errorhandler":
-/*!*******************************!*\
-  !*** external "errorhandler" ***!
-  \*******************************/
-/*! no static exports found */
+/* 13 */
 /***/ (function(module, exports) {
 
-module.exports = require("errorhandler");
+module.exports = require("react-router-dom");
 
 /***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ "express":
-/*!**************************!*\
-  !*** external "express" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+"use strict";
 
-module.exports = require("express");
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+exports.Hello = (props) => React.createElement("p", null,
+    "Hello, ",
+    props.name,
+    "!");
 
-/***/ }),
-
-/***/ "fs":
-/*!*********************!*\
-  !*** external "fs" ***!
-  \*********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
 
 /***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ "http":
-/*!***********************!*\
-  !*** external "http" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+"use strict";
 
-module.exports = require("http");
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+class NotFoundView extends React.Component {
+    render() {
+        return React.createElement("div", null,
+            React.createElement("h2", null, "404"),
+            React.createElement("h3", null, "Page not found"));
+    }
+}
+exports.default = NotFoundView;
 
-/***/ }),
-
-/***/ "path":
-/*!***********************!*\
-  !*** external "path" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
 
 /***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+"use strict";
 
-module.exports = require("react");
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+exports.isNode = (new Function("try {return this===global;}catch(e){return false;}"))();
+class PassThrough extends React.Component {
+    render() {
+        return this.props.children;
+    }
+}
+exports.Suspense = (() => {
+    return exports.isNode ? PassThrough : React.Suspense;
+})();
 
-/***/ }),
-
-/***/ "react-dom/server":
-/*!***********************************!*\
-  !*** external "react-dom/server" ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-dom/server");
 
 /***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ "react-router":
-/*!*******************************!*\
-  !*** external "react-router" ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+"use strict";
 
-module.exports = require("react-router");
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+class AboutView extends React.Component {
+    render() {
+        return React.createElement("div", null,
+            React.createElement("h2", null, "About"),
+            React.createElement("p", null,
+                "This project includes a working example of React, React Router, and TypeScript with Webpack. It is ",
+                React.createElement("a", { href: "https://github.com/ClickSimply/react-router-typescript-starter" }, "hosted on Github"),
+                "."));
+    }
+}
+exports.default = AboutView;
+
 
 /***/ })
-
-/******/ });
+/******/ ]);
 });
-//# sourceMappingURL=server.js.map
