@@ -8,203 +8,20 @@
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
 })(global, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
+return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
-module.exports = require("react");
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-router");
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(3);
+/***/ "./src/pages/MainPage.tsx":
+/*!********************************!*\
+  !*** ./src/pages/MainPage.tsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = __webpack_require__(4);
-const errorHandler = __webpack_require__(5);
-const http = __webpack_require__(6);
-const path = __webpack_require__(7);
-const fs = __webpack_require__(8);
-const React = __webpack_require__(0);
-const ReactDOMServer = __webpack_require__(9);
-const react_router_1 = __webpack_require__(1);
-const assets = fs.readFileSync(path.join(__dirname, "webpack-assets.json"), { encoding: "utf-8" });
-const app = express();
-app.set('port', process.env.PORT || 3000);
-const env = "production" || false;
-if ('development' === env) {
-    console.log('Running in development mode');
-    app.use(errorHandler());
-}
-app.use(express.static(path.join(__dirname, 'public')));
-const MainPage_1 = __webpack_require__(10);
-const appJS = JSON.parse(assets).app.js;
-/////////////////////////////
-// SSR when in production mode
-const routes_1 = __webpack_require__(11);
-app.use((req, res, next) => {
-    const content = ReactDOMServer.renderToString(React.createElement(react_router_1.StaticRouter, { location: req.url, context: {} },
-        React.createElement(routes_1.RouteMap, null)));
-    res.write("<!DOCTYPE html>");
-    const stream = ReactDOMServer.renderToStaticNodeStream(React.createElement(MainPage_1.default, { content: content, scriptSrc: appJS }));
-    stream.pipe(res);
-});
-/////////
-//////////////////////////////////////
-/////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///
-//////////
-http.createServer(app).listen(app.get('port'), () => {
-    console.log('Express server listening on port ' + app.get('port'));
-});
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("express");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = require("errorhandler");
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = require("http");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-dom/server");
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-const env = "production" || false;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const React = __webpack_require__(/*! react */ "react");
+const env = "development" || 0;
 class MainPage extends React.Component {
     render() {
         // Add helmet to control title at the view level
@@ -226,132 +43,168 @@ exports.default = MainPage;
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "./src/server.tsx":
+/*!************************!*\
+  !*** ./src/server.tsx ***!
+  \************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-const react_router_1 = __webpack_require__(1);
-const HomeView_1 = __webpack_require__(12);
-// import AboutView from './views/AboutView';
-const NotFoundView_1 = __webpack_require__(15);
-const AsyncRoute_1 = __webpack_require__(16);
-const AboutAsync = 
-////////////////////////
-__webpack_require__(17).default;
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const express = __webpack_require__(/*! express */ "express");
+const errorHandler = __webpack_require__(/*! errorhandler */ "errorhandler");
+const http = __webpack_require__(/*! http */ "http");
+const path = __webpack_require__(/*! path */ "path");
+const fs = __webpack_require__(/*! fs */ "fs");
+const React = __webpack_require__(/*! react */ "react");
+const ReactDOMServer = __webpack_require__(/*! react-dom/server */ "react-dom/server");
+const react_router_1 = __webpack_require__(/*! react-router */ "react-router");
+const assets = fs.readFileSync(path.join(__dirname, "webpack-assets.json"), { encoding: "utf-8" });
+const app = express();
+app.set('port', process.env.PORT || 3000);
+const env = "development" || 0;
+if ('development' === env) {
+    console.log('Running in development mode');
+    app.use(errorHandler());
+}
+app.use(express.static(path.join(__dirname, 'public')));
+const MainPage_1 = __webpack_require__(/*! ./pages/MainPage */ "./src/pages/MainPage.tsx");
+const appJS = JSON.parse(assets).app.js;
+/////////////////////////////
+//////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+/////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////
+///
 /////////
-/////////////////////////////////////////////////////////////////////////////
+// SPA with no SSR in development mode
+app.use((req, res, next) => {
+    res.send(`<!DOCTYPE html>${ReactDOMServer.renderToString(React.createElement(MainPage_1.default, { content: "", scriptSrc: "" }))}`);
+});
 //////////
-exports.RouteMap = () => (React.createElement(AsyncRoute_1.Suspense, { fallback: "Loading" },
-    React.createElement(react_router_1.Switch, null,
-        React.createElement(react_router_1.Route, { path: "/", exact: true, component: HomeView_1.default }),
-        React.createElement(react_router_1.Route, { path: "/about" },
-            React.createElement(AboutAsync, null)),
-        React.createElement(react_router_1.Route, { component: NotFoundView_1.default }))));
+http.createServer(app).listen(app.get('port'), () => {
+    console.log('Express server listening on port ' + app.get('port'));
+});
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "errorhandler":
+/*!*******************************!*\
+  !*** external "errorhandler" ***!
+  \*******************************/
+/***/ ((module) => {
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-const react_router_dom_1 = __webpack_require__(13);
-const Hello_1 = __webpack_require__(14);
-class HomeView extends React.Component {
-    render() {
-        return React.createElement("div", null,
-            React.createElement("h2", null, "Home"),
-            React.createElement(Hello_1.Hello, { name: "world" }),
-            React.createElement("div", null,
-                React.createElement(react_router_dom_1.Link, { to: "/about" }, "About")));
-    }
-}
-exports.default = HomeView;
-
+module.exports = require("errorhandler");;
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/***/ ((module) => {
 
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-exports.Hello = (props) => React.createElement("p", null,
-    "Hello, ",
-    props.name,
-    "!");
-
+module.exports = require("express");;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-class NotFoundView extends React.Component {
-    render() {
-        return React.createElement("div", null,
-            React.createElement("h2", null, "404"),
-            React.createElement("h3", null, "Page not found"));
-    }
-}
-exports.default = NotFoundView;
-
+module.exports = require("fs");;
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "http":
+/*!***********************!*\
+  !*** external "http" ***!
+  \***********************/
+/***/ ((module) => {
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-exports.isNode = (new Function("try {return this===global;}catch(e){return false;}"))();
-class PassThrough extends React.Component {
-    render() {
-        return this.props.children;
-    }
-}
-exports.Suspense = (() => {
-    return exports.isNode ? PassThrough : React.Suspense;
-})();
-
+module.exports = require("http");;
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/***/ ((module) => {
 
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-class AboutView extends React.Component {
-    render() {
-        return React.createElement("div", null,
-            React.createElement("h2", null, "About"),
-            React.createElement("p", null,
-                "This project includes a working example of React, React Router, and TypeScript with Webpack. It is ",
-                React.createElement("a", { href: "https://github.com/ClickSimply/react-router-typescript-starter" }, "hosted on Github"),
-                "."));
-    }
-}
-exports.default = AboutView;
+module.exports = require("path");;
 
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = require("react");;
+
+/***/ }),
+
+/***/ "react-dom/server":
+/*!***********************************!*\
+  !*** external "react-dom/server" ***!
+  \***********************************/
+/***/ ((module) => {
+
+module.exports = require("react-dom/server");;
+
+/***/ }),
+
+/***/ "react-router":
+/*!*******************************!*\
+  !*** external "react-router" ***!
+  \*******************************/
+/***/ ((module) => {
+
+module.exports = require("react-router");;
 
 /***/ })
-/******/ ]);
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	// module exports must be returned from runtime so entry inlining is disabled
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__("./src/server.tsx");
+/******/ })()
+;
 });
+//# sourceMappingURL=server.js.map
