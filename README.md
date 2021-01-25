@@ -12,12 +12,12 @@ Get React Router, Typescript, Server Side Rendering and Live Reloading in the ti
 
 Hot Module Reloading isn't really feasible if you're developing a universal javascript application and you want livereload on the server and client.  If you need/want HMR and you're developing a **purely client side app** I highly recommend [Parcel](https://github.com/adhrinae/ts-react-parcel).
 
-### Dependencies Current As Of 12-26-2020
+### Dependencies Current As Of 1-24-2021
 - Express 4.17.1
 - Typescript 4.1.3
 - React 17.0.1
 - React Router 5.2.0
-- Webpack 5.11.0
+- Webpack 5.17.0
 
 ## Usage
 ### 1. Git clone this repo.
